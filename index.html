@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Clipping de Notícias</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+        h1 { color: #333; }
+        h2 { background: #eee; padding: 5px; }
+        .noticia { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>📰 Clipping de Notícias</h1>
+    {% for tema, noticias in clipping.items() %}
+        <h2>{{ tema.capitalize() }}</h2>
+        {% if noticias %}
+            {% for noticia in noticias %}
+                <div class="noticia">
+                    <a href="{{ noticia.url }}" target="_blank"><strong>{{ noticia.title }}</strong></a><br>
+                    <small>{{ noticia.publishedAt.split('T')[0] }}</small><br>
+                    <p>{{ noticia.description }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Não há notícias para este tema.</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
